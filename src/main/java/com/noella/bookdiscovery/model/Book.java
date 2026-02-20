@@ -2,10 +2,7 @@ package com.noella.bookdiscovery.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.*;
 
 import java.time.Instant;
@@ -53,6 +50,10 @@ public class Book {
     @NotBlank(message = "Description is required")
     @Column(columnDefinition = "TEXT", nullable = false)
     private String description;
+
+    @Min(0)
+    @Builder.Default
+    private int readCount = 0;
 
     @CreationTimestamp
     @Column(updatable = false)
